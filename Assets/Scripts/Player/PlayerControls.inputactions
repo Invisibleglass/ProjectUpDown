@@ -1,0 +1,62 @@
+{
+    "name": "PlayerControls",
+    "maps": [
+        {
+            "name": "Tap",
+            "id": "b4f20794-5fe1-4ad4-b6f7-cb415573d084",
+            "actions": [
+                {
+                    "name": "Go Up",
+                    "type": "Button",
+                    "id": "a9236d2d-d794-424c-9e20-f772c8b53ea4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=0.1)",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d1f70937-4677-418f-ba4a-127258070ad0",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Go Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Swipe",
+            "id": "ecb39b7f-b338-4335-a534-caa00efb520e",
+            "actions": [
+                {
+                    "name": "Vehicle Teleport",
+                    "type": "Value",
+                    "id": "b57ec463-6f50-4c70-ae73-009e0a4bdd1b",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "911c9b25-a2b7-400f-8169-d5ce77807085",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Vehicle Teleport",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
