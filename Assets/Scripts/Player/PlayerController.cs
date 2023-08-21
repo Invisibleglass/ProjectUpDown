@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private PlayerControls controls;
     private Rigidbody2D rb;
 
-    private float continuousForce = 2f;
+    private float continuousForce = 1f;
     private bool isTapPressed;
 
     private void Awake()
@@ -61,6 +61,25 @@ public class PlayerController : MonoBehaviour
         if(isTapPressed == true)
         {
             rb.AddForce(Vector2.up * continuousForce, ForceMode2D.Force);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        //Adds to score/ currency
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            Destroy(other.gameObject);
+        }
+        //Ends Run
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            controls.Disable();
+            Destroy(gameObject);
+        }
+        if(other.gameObject.CompareTag("Glass"))
+        {
+            //Glass Explosion function here
         }
     }
 }
