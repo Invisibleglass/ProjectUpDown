@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private PlayerControls controls;
     private Rigidbody2D rb;
 
-    private float continuousForce = 1f;
+    private float continuousForce = 2f;
     private bool isTapPressed;
 
     private void Awake()
