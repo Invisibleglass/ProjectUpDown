@@ -35,6 +35,14 @@ public class PlayerController : MonoBehaviour
         //controls.Swipe.VehicleTeleport.started -= OnSwipeStart;
         //controls.Swipe.VehicleTeleport.canceled -= OnSwipeCanceled;
     }
+    // Update is called once per frame
+    void Update()
+    {
+        if(isTapPressed == true)
+        {
+            rb.AddForce(Vector2.up * continuousForce, ForceMode2D.Force);
+        }
+    }
 
     private void OnHoldEnd(InputAction.CallbackContext context)
     {
@@ -49,19 +57,9 @@ public class PlayerController : MonoBehaviour
         AccelerateUp();
     }
 
-    
     private void AccelerateUp()
     {
         isTapPressed = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(isTapPressed == true)
-        {
-            rb.AddForce(Vector2.up * continuousForce, ForceMode2D.Force);
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -70,16 +68,23 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Coin"))
         {
             Destroy(other.gameObject);
-        }
-        //Ends Run
-        if (other.gameObject.CompareTag("Wall"))
-        {
-            controls.Disable();
-            Destroy(gameObject);
+            FindObjectOfType<GameManager>().AddScore();
         }
         if(other.gameObject.CompareTag("Glass"))
         {
             //Glass Explosion function here
         }
+        ///ADD GAMEOVER SCREEN AND STOP GAMEPLAY
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            controls.Disable();
+            Destroy(gameObject);
+        }
+        if(other.gameObject.CompareTag("Laser"))
+        {
+            controls.Disable();
+            Destroy(gameObject);
+        }
+
     }
 }
