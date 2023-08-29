@@ -45,13 +45,6 @@ public class GameManager : MonoBehaviour
             score++;
             totalTimer++;
         }
-
-        //Create Lasers after 15 secs
-        if (totalTimer > 15f)
-        {
-
-        }
-
     }
 
     //applies force to the section increasing based on score
