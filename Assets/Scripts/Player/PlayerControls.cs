@@ -28,13 +28,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""b4f20794-5fe1-4ad4-b6f7-cb415573d084"",
             ""actions"": [
                 {
-                    ""name"": ""Go Up"",
+                    ""name"": ""GoUp"",
                     ""type"": ""Button"",
                     ""id"": ""a9236d2d-d794-424c-9e20-f772c8b53ea4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold(duration=0.1)"",
-                    ""initialStateCheck"": false
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -45,7 +45,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Go Up"",
+                    ""action"": ""GoUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -84,7 +84,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
 }");
         // Tap
         m_Tap = asset.FindActionMap("Tap", throwIfNotFound: true);
-        m_Tap_GoUp = m_Tap.FindAction("Go Up", throwIfNotFound: true);
+        m_Tap_GoUp = m_Tap.FindAction("GoUp", throwIfNotFound: true);
         // Swipe
         m_Swipe = asset.FindActionMap("Swipe", throwIfNotFound: true);
         m_Swipe_VehicleTeleport = m_Swipe.FindAction("Vehicle Teleport", throwIfNotFound: true);

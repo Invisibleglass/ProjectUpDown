@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public GameObject UIMenu;
     [Header("Score")]
     public Text scoreText;
+    public Text tapText;
     [Header("Buttons")]
     public Button pauseButton;
     public Button playButton;
@@ -63,5 +64,14 @@ public class UIManager : MonoBehaviour
     private void StartGame()
     {
         SceneManager.LoadScene("Play scene");
+    }
+
+    public void TapTextActive()
+    {
+        tapText.text = "IT WORKED!!!";
+    }
+    public void TapTextDeactive()
+    {
+        tapText.text = "";
     }
 }

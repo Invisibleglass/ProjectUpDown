@@ -10,18 +10,18 @@ public class PlayerController : MonoBehaviour
     private PlayerControls controls;
     private Rigidbody2D rb;
 
-    private float continuousForce = 2f;
+    private float continuousForce = 25f;
     private bool isTapPressed;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         controls = new PlayerControls();
-        controls.Enable();
     }
 
     private void OnEnable()
     {
+        controls.Enable();
         controls.Tap.GoUp.performed += OnHold;
         controls.Tap.GoUp.canceled += OnHoldEnd;
         //controls.Swipe.VehicleTeleport.started += OnSwipeStart;
@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     {
         controls.Tap.GoUp.performed -= OnHold;
         controls.Tap.GoUp.canceled -= OnHoldEnd;
+        controls.Disable();
         //controls.Swipe.VehicleTeleport.started -= OnSwipeStart;
         //controls.Swipe.VehicleTeleport.canceled -= OnSwipeCanceled;
     }
@@ -40,19 +41,20 @@ public class PlayerController : MonoBehaviour
     {
         if(isTapPressed == true)
         {
-            rb.AddForce(Vector2.up * continuousForce, ForceMode2D.Force);
+            //USE continuousForce * Time.deltaTime in order to solve different frame rates
+            rb.AddForce(Vector2.up * continuousForce * Time.deltaTime, ForceMode2D.Impulse);
         }
     }
 
     private void OnHoldEnd(InputAction.CallbackContext context)
     {
-        Debug.Log("Tap ended!");
+        FindObjectOfType<UIManager>().TapTextDeactive();
         isTapPressed = false;
     }
 
     private void OnHold(InputAction.CallbackContext context)
     {
-        Debug.Log("Tap detected!");
+        FindObjectOfType<UIManager>().TapTextActive();
         // Handle tap input
         AccelerateUp();
     }

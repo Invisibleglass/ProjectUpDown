@@ -6,13 +6,13 @@
             "id": "b4f20794-5fe1-4ad4-b6f7-cb415573d084",
             "actions": [
                 {
-                    "name": "Go Up",
+                    "name": "GoUp",
                     "type": "Button",
                     "id": "a9236d2d-d794-424c-9e20-f772c8b53ea4",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold(duration=0.1)",
-                    "initialStateCheck": false
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -23,7 +23,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Go Up",
+                    "action": "GoUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
