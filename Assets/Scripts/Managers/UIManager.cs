@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour
     [Header("Score")]
     public Text scoreText;
     public Text tapText;
+    public GameObject newHighScoreText;
+    public Text HighScoreAmount;
     [Header("Buttons")]
     public Button pauseButton;
     public Button playButton;
@@ -21,16 +23,31 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(pauseButton)
+        if (pauseButton)
             pauseButton.onClick.AddListener(PauseGame);
-        if(playButton)
+        if (playButton)
             playButton.onClick.AddListener(ResumeGame);
         if (toMainButton)
             toMainButton.onClick.AddListener(ToMainMenu);
         if (toPlayButton)
             toPlayButton.onClick.AddListener(StartGame);
+        if (HighScoreAmount)
+            HighScoreAmount.text = FindAnyObjectByType<ScoreHolder>().highScore.ToString() + " Points";
         if (scoreText)
-            scoreText.text = FindObjectOfType<GameManager>().score.ToString() + " Points";
+        {
+            if(SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Play Scene"))
+            {
+                scoreText.text = FindObjectOfType<GameManager>().score.ToString() + " Points";
+            }
+            else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("GameOver Scene"))
+            {
+                scoreText.text = FindObjectOfType<ScoreHolder>().score.ToString() + " Points";
+            }
+        }
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Play scene"))
+        {
+            FindObjectOfType<ScoreHolder>().newHighScoreBool = false;
+        }
     }
 
     // Update is called once per frame
@@ -38,8 +55,17 @@ public class UIManager : MonoBehaviour
     {
         if (scoreText)
         {
-            scoreText.text = FindObjectOfType<GameManager>().score.ToString() + " Points";
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Play Scene"))
+            {
+                scoreText.text = FindObjectOfType<GameManager>().score.ToString() + " Points";
+            }
+            else if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("GameOver Scene"))
+            {
+                scoreText.text = FindObjectOfType<ScoreHolder>().score.ToString() + " Points";
+            }
         }
+        if (HighScoreAmount)
+            HighScoreAmount.text = FindAnyObjectByType<ScoreHolder>().highScore.ToString() + " Points";
     }
 
     private void PauseGame()
@@ -64,6 +90,20 @@ public class UIManager : MonoBehaviour
     private void StartGame()
     {
         SceneManager.LoadScene("Play scene");
+    }
+
+    public void GameOver()
+    {
+        FindObjectOfType<ScoreHolder>().SetScore();
+        SceneManager.LoadScene("GameOver scene");
+    }
+
+    public void NewHighScore()
+    {
+        if (FindAnyObjectByType<ScoreHolder>().newHighScoreBool == true)
+        {
+            newHighScoreText.SetActive(true);
+        }
     }
 
     public void TapTextActive()
