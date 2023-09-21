@@ -86,6 +86,7 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.CompareTag("Laser"))
         {
             controls.Disable();
+            FindObjectOfType<UIManager>().GameOver();
             Destroy(gameObject);
         }
 
