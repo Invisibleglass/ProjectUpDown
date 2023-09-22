@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public Sprite flyingSprite;
+    public Sprite walkingSprite;
+
     private Vector2 swipeStartPos;
     private PlayerControls controls;
     private Rigidbody2D rb;
@@ -50,6 +53,7 @@ public class PlayerController : MonoBehaviour
     {
         FindObjectOfType<UIManager>().TapTextDeactive();
         isTapPressed = false;
+        ChangeSpriteWalking();
     }
 
     private void OnHold(InputAction.CallbackContext context)
@@ -57,6 +61,7 @@ public class PlayerController : MonoBehaviour
         FindObjectOfType<UIManager>().TapTextActive();
         // Handle tap input
         AccelerateUp();
+        ChangeSpriteFlying();
     }
 
     private void AccelerateUp()
@@ -91,4 +96,15 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    private void ChangeSpriteFlying()
+    {
+        GetComponent<SpriteRenderer>().sprite = flyingSprite;
+    }
+
+    private void ChangeSpriteWalking()
+    {
+        GetComponent<SpriteRenderer>().sprite = walkingSprite;
+    }
+
 }
