@@ -47,7 +47,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.034765244, y: -0.0016991496}
+  m_Offset: {x: 0.034765244, y: -0.0016991794}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -58,7 +58,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 24.851318, y: 0.75841796}
+  m_Size: {x: 24.851318, y: 1.0122571}
   m_EdgeRadius: 0
 --- !u!1001 &8033343770845919748
 PrefabInstance:
@@ -73,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4903778405014033322, guid: dc62622e69b030a49bce272938380ecb, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 4903778405014033322, guid: dc62622e69b030a49bce272938380ecb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -129,7 +129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5815761974435062432, guid: dc62622e69b030a49bce272938380ecb, type: 3}
       propertyPath: m_SortingOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8726042494811429969, guid: dc62622e69b030a49bce272938380ecb, type: 3}
       propertyPath: m_Name
@@ -155,7 +155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4903778405014033322, guid: dc62622e69b030a49bce272938380ecb, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 4903778405014033322, guid: dc62622e69b030a49bce272938380ecb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -199,7 +199,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5815761974435062432, guid: dc62622e69b030a49bce272938380ecb, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8726042494811429969, guid: dc62622e69b030a49bce272938380ecb, type: 3}
       propertyPath: m_Name

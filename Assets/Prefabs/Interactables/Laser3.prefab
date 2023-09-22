@@ -7,33 +7,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2361529290633207242, guid: 36cdf72dfb52b6c4fa3098c9dbe56f65, type: 3}
-      propertyPath: m_Size.y
-      value: 1.0122571
-      objectReference: {fileID: 0}
-    - target: {fileID: 2361529290633207242, guid: 36cdf72dfb52b6c4fa3098c9dbe56f65, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.0016991794
-      objectReference: {fileID: 0}
     - target: {fileID: 2745585627853345577, guid: 36cdf72dfb52b6c4fa3098c9dbe56f65, type: 3}
       propertyPath: m_Name
       value: Laser3
       objectReference: {fileID: 0}
-    - target: {fileID: 3130445818021669294, guid: 36cdf72dfb52b6c4fa3098c9dbe56f65, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.1
-      objectReference: {fileID: 0}
     - target: {fileID: 3383825680968256399, guid: 36cdf72dfb52b6c4fa3098c9dbe56f65, type: 3}
       propertyPath: m_SortingOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4201233169381325445, guid: 36cdf72dfb52b6c4fa3098c9dbe56f65, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4596371105709758628, guid: 36cdf72dfb52b6c4fa3098c9dbe56f65, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9129647783779175809, guid: 36cdf72dfb52b6c4fa3098c9dbe56f65, type: 3}
       propertyPath: m_RootOrder

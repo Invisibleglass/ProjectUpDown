@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public Sprite flyingSprite;
     public Sprite walkingSprite;
 
+    public AudioClip coinSound;
+
     private Vector2 swipeStartPos;
     private PlayerControls controls;
     private Rigidbody2D rb;
@@ -22,7 +24,7 @@ public class PlayerController : MonoBehaviour
         controls = new PlayerControls();
     }
 
-    private void OnEnable()
+    public void OnEnable()
     {
         controls.Enable();
         controls.Tap.GoUp.performed += OnHold;
@@ -31,7 +33,7 @@ public class PlayerController : MonoBehaviour
         //controls.Swipe.VehicleTeleport.canceled += OnSwipeCanceled;
     }
 
-    private void OnDisable()
+    public void OnDisable()
     {
         controls.Tap.GoUp.performed -= OnHold;
         controls.Tap.GoUp.canceled -= OnHoldEnd;
@@ -71,17 +73,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //Adds to score/ currency
+        //Adds to score/currency
         if (other.gameObject.CompareTag("Coin"))
         {
             Destroy(other.gameObject);
+            FindObjectOfType<AudioManager>().PlaySound(coinSound);
             FindObjectOfType<GameManager>().AddScore();
         }
         if(other.gameObject.CompareTag("Glass"))
         {
             //Glass Explosion function here
         }
-        ///ADD GAMEOVER SCREEN AND STOP GAMEPLAY
         if (other.gameObject.CompareTag("Wall"))
         {
             controls.Disable();

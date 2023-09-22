@@ -9,6 +9,8 @@ TagManager:
   - Wall
   - SectionEndPoint
   - Laser
+  - MusicToggle
+  - EffectsToggle
   layers:
   - Default
   - TransparentFX
