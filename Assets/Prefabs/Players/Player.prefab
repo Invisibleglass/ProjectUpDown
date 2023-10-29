@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9048969883583287386}
   - component: {fileID: 9048969883583287387}
   - component: {fileID: 9048969883583287388}
-  - component: {fileID: 9048969883583287391}
+  - component: {fileID: 140971100}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -134,7 +134,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.50468135, y: 1.463313}
   m_EdgeRadius: 0
---- !u!114 &9048969883583287391
+--- !u!114 &140971100
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,9 +143,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 9048969883583287384}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12dc9c21127081448b0c7173c18136a5, type: 3}
+  m_Script: {fileID: 11500000, guid: d509f420fd48db74e963315cc10174a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 9048969883583287387}
   flyingSprite: {fileID: 21300000, guid: 895e7f9736019b3468a975d9a15f8b4d, type: 3}
   walkingSprite: {fileID: 21300000, guid: ec82b51a3f5948d4eab387aac28d9e94, type: 3}
   coinSound: {fileID: 8300000, guid: c129ae1c0ecfc674286dbfbab4173713, type: 3}
