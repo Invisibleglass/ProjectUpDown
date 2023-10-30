@@ -5,13 +5,6 @@ using UnityEngine.InputSystem;
 
 public class BasePlayerController : MonoBehaviour
 {
-    /*protected CharacterSwitchHandler characterSwitcher;
-
-    public BasePlayerController(CharacterSwitchHandler characterSwitcher)
-    {
-        this.characterSwitcher = characterSwitcher;
-    }*/
-
     [SerializeField] protected Rigidbody2D rb;
     [SerializeField] protected PlayerControls controls;
 
@@ -38,6 +31,7 @@ public class BasePlayerController : MonoBehaviour
         controls.Tap.GoUp.performed -= OnHold;
         controls.Tap.GoUp.canceled -= OnHoldEnd;
         controls.Disable();
+        isTapPressed = false;
         //controls.Swipe.VehicleTeleport.started -= OnSwipeStart;
         //controls.Swipe.VehicleTeleport.canceled -= OnSwipeCanceled;
     }
@@ -70,5 +64,19 @@ public class BasePlayerController : MonoBehaviour
         isTapPressed = true;
     }
 
+    public float GetVelocity()
+    {
+        return rb.velocity.y;
+    }
+
+    public Vector3 GetPosition()
+    {
+        return gameObject.transform.position;
+    }
+
+    public void SetVelocity(float currentVelocity)
+    {
+        rb.velocity = new Vector2 (0f, currentVelocity);
+    }
 
 }

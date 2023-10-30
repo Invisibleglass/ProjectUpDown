@@ -7,7 +7,7 @@ public class BackgroundParallax : MonoBehaviour
     [SerializeField] float moveSpeed;
     [SerializeField] bool scrollLeft;
 
-    private float offset = 5f;
+    [SerializeField]private float offset = 5f;
     private float singleTextureWidth;
 
     // Start is called before the first frame update

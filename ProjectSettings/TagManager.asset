@@ -11,6 +11,7 @@ TagManager:
   - Laser
   - MusicToggle
   - EffectsToggle
+  - FrostyCoin
   layers:
   - Default
   - TransparentFX
@@ -53,4 +54,10 @@ TagManager:
     locked: 0
   - name: roof/floor
     uniqueID: 3931167725
+    locked: 0
+  - name: Player
+    uniqueID: 2246837519
+    locked: 0
+  - name: Foreground
+    uniqueID: 2623428385
     locked: 0

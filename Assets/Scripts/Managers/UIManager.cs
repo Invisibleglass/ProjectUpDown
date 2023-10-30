@@ -71,7 +71,7 @@ public class UIManager : MonoBehaviour
     private void PauseGame()
     {
         Time.timeScale = 0;
-        FindObjectOfType<PlayerController>().OnDisable();
+        FindAnyObjectByType<BasePlayerController>().OnDisable();
         UIMenu.SetActive(false);
         pauseMenu.SetActive(true);
         GameObject.FindWithTag("MusicToggle").GetComponent<ToggleAudio>().SwapColorMusic();
@@ -79,7 +79,7 @@ public class UIManager : MonoBehaviour
     }
     private void ResumeGame()
     {
-        FindObjectOfType<PlayerController>().OnEnable();
+        FindObjectOfType<BasePlayerController>().OnEnable();
         pauseMenu.SetActive(false);
         UIMenu.SetActive(true);
         Time.timeScale = 1;

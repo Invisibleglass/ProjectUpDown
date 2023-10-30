@@ -40,6 +40,11 @@ public class AlejandroPlayerController : BasePlayerController
             FindObjectOfType<UIManager>().GameOver();
             Destroy(gameObject);
         }
+        if (other.gameObject.CompareTag("FrostyCoin"))
+        {
+            Destroy(other);
+            FindObjectOfType<CharacterSwitcher>().FrostyCoin();
+        }
 
     }
 
@@ -66,5 +71,4 @@ public class AlejandroPlayerController : BasePlayerController
     {
         GetComponent<SpriteRenderer>().sprite = walkingSprite;
     }
-
 }

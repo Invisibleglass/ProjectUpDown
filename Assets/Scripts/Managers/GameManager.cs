@@ -57,7 +57,9 @@ public class GameManager : MonoBehaviour
     public void NewSectionSpawn()
     {
         //spawns a random section from the list of sections
-        int randomIndex = Random.Range(0, sections.Count);
+        ///***NOTE***  if you want to test swtching to frosty, uncomment the line below and comment the one under it
+        int randomIndex = 4;
+        //int randomIndex = Random.Range(0, sections.Count);
         GameObject section = Instantiate(sections[randomIndex], sectionSpawnpoint);
         NewSectionForce();
     }
