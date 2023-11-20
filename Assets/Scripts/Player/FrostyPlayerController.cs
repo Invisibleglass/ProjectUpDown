@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FrostyPlayerController : BasePlayerController
 {
+    private GameManager gameManager;
+
     [SerializeField] private GameObject body;
     [SerializeField] private GameObject body2;
     [SerializeField] private GameObject body3;
@@ -17,6 +19,14 @@ public class FrostyPlayerController : BasePlayerController
     private float flightHeightCave = 3f;
 
     private bool isGoingUp;
+
+    public AudioClip coinSound;
+
+    private void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
+
     IEnumerator FollowHead()
     {
         float currentPosition = this.gameObject.transform.position.y;
@@ -25,7 +35,7 @@ public class FrostyPlayerController : BasePlayerController
         float body3Position = body.transform.position.y;
 
         yield return new WaitForSeconds(delay);
-        body.transform.position = new Vector3 (body.transform.position.x, currentPosition, body.transform.position.z);
+        body.transform.position = new Vector3(body.transform.position.x, currentPosition, body.transform.position.z);
         body2.transform.position = new Vector3(body2.transform.position.x, bodyPosition, body2.transform.position.z);
         yield return new WaitForSeconds(delay);
         body3.transform.position = new Vector3(body3.transform.position.x, body2Position, body3.transform.position.z);
@@ -75,6 +85,7 @@ public class FrostyPlayerController : BasePlayerController
         }
         OnEnable();
         skyFloor.enabled = true;
+        gameManager.SpawnSkySection();
     }
 
     IEnumerator FrostyGoesDown()
@@ -92,5 +103,18 @@ public class FrostyPlayerController : BasePlayerController
             yield return null;
         }
         roof.enabled = true;
+        gameManager.AddSectionForce(FindFirstObjectByType<SectionManager>().gameObject);
+        FindObjectOfType<SkySectionManager>().ClearSkySections();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        //Adds to score/currency
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            Destroy(other.gameObject);
+            FindObjectOfType<AudioManager>().PlaySound(coinSound);
+            FindObjectOfType<GameManager>().AddScore();
+        }
     }
 }

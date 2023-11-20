@@ -6,7 +6,9 @@ public class GameManager : MonoBehaviour
 {
     [Header("Section Prefabs")]
     public List<GameObject> sections;
+    public List<GameObject> skySections;
     public Transform sectionSpawnpoint;
+    public Transform skySectionSpawnpoint;
 
     [Header("Laser Prefabs")]
     public GameObject dangerIcon;
@@ -48,9 +50,14 @@ public class GameManager : MonoBehaviour
     }
 
     //applies force to the section increasing based on score
-    private void NewSectionForce()
+    public void AddSectionForce(GameObject section)
     {
-        FindObjectOfType<SectionManager>().GetComponent<Rigidbody2D>().AddForce(Vector2.left * (continuousForce + (score / 10)), ForceMode2D.Force);
+        section.GetComponent<Rigidbody2D>().AddForce(Vector2.left * (continuousForce + (score / 10)), ForceMode2D.Force);
+    }
+
+    public void SectionCounterForce(GameObject section)
+    {
+        section.GetComponent<Rigidbody2D>().AddForce(Vector2.right * (continuousForce + (score / 10)), ForceMode2D.Force);
     }
 
     //spawns new section
@@ -58,12 +65,30 @@ public class GameManager : MonoBehaviour
     {
         //spawns a random section from the list of sections
         ///***NOTE***  if you want to test swtching to frosty, uncomment the line below and comment the one under it
-        int randomIndex = 4;
-        //int randomIndex = Random.Range(0, sections.Count);
+        //int randomIndex = 4;
+        int randomIndex = Random.Range(0, sections.Count);
+        //Frostys index 
+        if (randomIndex == 5)
+        {
+            int areYouSure = Random.Range(0, 10);
+            if(areYouSure != 7)
+            {
+                while (randomIndex == 5)
+                {
+                    randomIndex = Random.Range(0, sections.Count);
+                }
+            }
+        }
         GameObject section = Instantiate(sections[randomIndex], sectionSpawnpoint);
-        NewSectionForce();
+        AddSectionForce(section);
     }
 
+    public void SpawnSkySection()
+    {
+        int randomIndex = Random.Range(0, skySections.Count);
+        GameObject skySection = Instantiate(skySections[randomIndex], skySectionSpawnpoint);
+        AddSectionForce(skySection);
+    }
     //used to add 5 points to the score (Player/Coin collision)
     public void AddScore()
     {
@@ -85,6 +110,12 @@ public class GameManager : MonoBehaviour
 
     IEnumerator LaserIconSpawn()
     {
+        if(FindObjectOfType<CharacterSwitcher>().currentCharacterState == CharacterSwitcher.CharacterState.Frosty)
+        {
+            yield return new WaitUntil(() => FindObjectOfType<CharacterSwitcher>().currentCharacterState == CharacterSwitcher.CharacterState.Alejandro);
+            yield return new WaitForSeconds(Random.Range(0f, 5f));
+        }
+
         Debug.Log("Started LaserIconSpawn at timestamp : " + Time.time);
 
         //random icon height

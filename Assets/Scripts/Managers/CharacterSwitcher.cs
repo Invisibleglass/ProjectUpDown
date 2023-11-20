@@ -10,7 +10,7 @@ public class CharacterSwitcher : MonoBehaviour
     private AlejandroPlayerController alejandroController;
     private FrostyPlayerController frostyController;
     private float frostyTotalTime = 20f;
-    private float frostDownTime = 2f;
+    private float frostDownTime = 1.3f;
 
     public CharacterState currentCharacterState = CharacterState.Alejandro;
 
@@ -39,6 +39,7 @@ public class CharacterSwitcher : MonoBehaviour
                 frostyController.SetVelocity(currentVelocityA);
                 frostyController.SetWormPositions(currentPositionA);
                 currentCharacterState = CharacterState.Frosty;
+                FindObjectOfType<SectionManager>().pauseSection = true;
                 StartCoroutine(EndOfFrosty());
                 break;
             case CharacterState.Frosty:

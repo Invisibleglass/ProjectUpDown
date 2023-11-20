@@ -12,6 +12,7 @@ TagManager:
   - MusicToggle
   - EffectsToggle
   - FrostyCoin
+  - SkySectionEndPoint
   layers:
   - Default
   - TransparentFX
