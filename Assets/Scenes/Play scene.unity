@@ -971,6 +971,14 @@ MonoBehaviour:
   score: 0
   highScore: 0
   newHighScoreBool: 0
+  equipTopHat: 0
+  becomeCapsule: 0
+  purchasedTopHat: 0
+  purchasedCapsule: 0
+  coins: 0
+  coinsCollected: 0
+  topHatAmount: 0
+  capsuleAmount: 0
 --- !u!4 &491620754
 Transform:
   m_ObjectHideFlags: 0
@@ -2101,7 +2109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6d82ddbe93fea04cb62366775e103f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlaySceneMusic: {fileID: 0}
+  PlaySceneMusic: {fileID: 8300000, guid: 153c61c412fe3214bbb93d167f785a89, type: 3}
   _musicSource: {fileID: 833692328}
   _effectsSource: {fileID: 695783221}
 --- !u!4 &932050726
@@ -3111,14 +3119,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1355144882}
   UIMenu: {fileID: 1372167037}
+  MainMenu: {fileID: 0}
+  ShopMenu: {fileID: 0}
   scoreText: {fileID: 578483685}
   tapText: {fileID: 1331011110}
   newHighScoreText: {fileID: 0}
   HighScoreAmount: {fileID: 0}
+  topHatAmount: {fileID: 0}
+  capsuleAmount: {fileID: 0}
+  coinAmount: {fileID: 0}
+  lastRunCoins: {fileID: 0}
   pauseButton: {fileID: 137120128}
   playButton: {fileID: 2129384201}
   toMainButton: {fileID: 1550739051}
   toPlayButton: {fileID: 0}
+  toShopButton: {fileID: 0}
+  buyTopHatButton: {fileID: 0}
+  buyCapsuleButton: {fileID: 0}
+  equipTopHatButton: {fileID: 0}
+  equipCapsuleButton: {fileID: 0}
 --- !u!114 &1372167039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4264,6 +4283,7 @@ MonoBehaviour:
   laser2: {fileID: 2745585627853345577, guid: 36cdf72dfb52b6c4fa3098c9dbe56f65, type: 3}
   laser3: {fileID: 5675580026578123666, guid: b8d6b8b94d064644f880d9cd3c40dcf3, type: 3}
   score: 0
+  coinsCollected: 0
   continuousForce: 100
 --- !u!4 &1899129113
 Transform:

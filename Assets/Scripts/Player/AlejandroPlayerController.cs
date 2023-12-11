@@ -32,13 +32,11 @@ public class AlejandroPlayerController : BasePlayerController
         {
             controls.Disable();
             FindObjectOfType<UIManager>().GameOver();
-            Destroy(gameObject);
         }
         if (other.gameObject.CompareTag("Laser"))
         {
             controls.Disable();
             FindObjectOfType<UIManager>().GameOver();
-            Destroy(gameObject);
         }
         if (other.gameObject.CompareTag("FrostyCoin"))
         {
