@@ -2132,34 +2132,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Alejandro
       objectReference: {fileID: 0}
-    - target: {fileID: 9048969883583287386, guid: 489c7d48bfeec3b419ff9577ce4a0c94, type: 3}
-      propertyPath: m_SortingLayer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9048969883583287386, guid: 489c7d48bfeec3b419ff9577ce4a0c94, type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9048969883583287386, guid: 489c7d48bfeec3b419ff9577ce4a0c94, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -2048129777
-      objectReference: {fileID: 0}
-    - target: {fileID: 9048969883583287388, guid: 489c7d48bfeec3b419ff9577ce4a0c94, type: 3}
-      propertyPath: m_Size.x
-      value: 0.52045107
-      objectReference: {fileID: 0}
-    - target: {fileID: 9048969883583287388, guid: 489c7d48bfeec3b419ff9577ce4a0c94, type: 3}
-      propertyPath: m_Size.y
-      value: 1.3713245
-      objectReference: {fileID: 0}
-    - target: {fileID: 9048969883583287388, guid: 489c7d48bfeec3b419ff9577ce4a0c94, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.00012075901
-      objectReference: {fileID: 0}
-    - target: {fileID: 9048969883583287388, guid: 489c7d48bfeec3b419ff9577ce4a0c94, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.037548304
-      objectReference: {fileID: 0}
     - target: {fileID: 9048969883583287389, guid: 489c7d48bfeec3b419ff9577ce4a0c94, type: 3}
       propertyPath: m_RootOrder
       value: 0

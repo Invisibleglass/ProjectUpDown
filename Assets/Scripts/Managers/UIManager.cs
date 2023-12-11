@@ -3,22 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class UIManager : MonoBehaviour
 {
     [Header("Menus")]
     public GameObject pauseMenu;
     public GameObject UIMenu;
+    public GameObject MainMenu;
+    public GameObject ShopMenu;
     [Header("Score")]
     public Text scoreText;
     public Text tapText;
     public GameObject newHighScoreText;
     public Text HighScoreAmount;
+    public Text topHatAmount;
+    public Text capsuleAmount;
+    public Text coinAmount;
+    public Text lastRunCoins;
     [Header("Buttons")]
     public Button pauseButton;
     public Button playButton;
     public Button toMainButton;
     public Button toPlayButton;
+    public Button toShopButton;
+    public Button buyTopHatButton;
+    public Button buyCapsuleButton;
+    public Button equipTopHatButton;
+    public Button equipCapsuleButton;
 
     // Start is called before the first frame update
     void Start()
@@ -31,8 +43,26 @@ public class UIManager : MonoBehaviour
             toMainButton.onClick.AddListener(ToMainMenu);
         if (toPlayButton)
             toPlayButton.onClick.AddListener(StartGame);
+        if (toShopButton)
+            toShopButton.onClick.AddListener(OpenShop);
+        if (buyTopHatButton)
+            buyTopHatButton.onClick.AddListener(UnlockTopHat);
+        if (buyCapsuleButton)
+            buyCapsuleButton.onClick.AddListener(UnlockCapsule);
+        if (equipTopHatButton)
+            equipTopHatButton.onClick.AddListener(ScoreHolder.Instance.EquipTopHat);
+        if (equipCapsuleButton)
+            equipCapsuleButton.onClick.AddListener(ScoreHolder.Instance.EquipCapsule);
         if (HighScoreAmount)
             HighScoreAmount.text = FindAnyObjectByType<ScoreHolder>().highScore.ToString() + " Points";
+        if (topHatAmount)
+            topHatAmount.text = ScoreHolder.Instance.topHatAmount.ToString() + "Coins";
+        if (capsuleAmount)
+            capsuleAmount.text = ScoreHolder.Instance.capsuleAmount.ToString() + "Coins";
+        if (coinAmount)
+            coinAmount.text = ScoreHolder.Instance.coins.ToString() + " Coins";
+        if (lastRunCoins)
+            lastRunCoins.text = ScoreHolder.Instance.coinsCollected.ToString() + " Coins";
         if (scoreText)
         {
             if(SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Play Scene"))
@@ -48,6 +78,40 @@ public class UIManager : MonoBehaviour
         {
             FindObjectOfType<ScoreHolder>().newHighScoreBool = false;
         }
+
+        if (topHatAmount)
+            ToggleTopHat();
+        if (capsuleAmount)
+            ToggleCapsule();
+    }
+
+    private void UnlockTopHat()
+    {
+        if(ScoreHolder.Instance.coins >= ScoreHolder.Instance.topHatAmount)
+        {
+            ScoreHolder.Instance.PurchasedTopHat();
+            ToggleTopHat();
+        }
+    }
+
+    private void UnlockCapsule()
+    {
+        if (ScoreHolder.Instance.coins >= ScoreHolder.Instance.capsuleAmount)
+        {
+            ScoreHolder.Instance.PurchasedCapsule();
+            ToggleCapsule();
+        }
+    }
+
+    private void OpenShop()
+    {
+        MainMenu.SetActive(false);
+        ShopMenu.SetActive(true);
+    }
+    private void CloseShop()
+    {
+        MainMenu.SetActive(true);
+        ShopMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -64,10 +128,49 @@ public class UIManager : MonoBehaviour
                 scoreText.text = FindObjectOfType<ScoreHolder>().score.ToString() + " Points";
             }
         }
+        if (coinAmount)
+            coinAmount.text = FindAnyObjectByType<ScoreHolder>().coins.ToString() + " Coins";
+        if (topHatAmount)
+            ToggleTopHat();
+        if (capsuleAmount)
+            ToggleCapsule();
         if (HighScoreAmount)
             HighScoreAmount.text = FindAnyObjectByType<ScoreHolder>().highScore.ToString() + " Points";
     }
 
+    private void ToggleTopHat()
+    {
+        if (ScoreHolder.Instance.purchasedTopHat)
+        {
+            buyTopHatButton.gameObject.SetActive(false);
+            equipTopHatButton.gameObject.SetActive(true);
+            if (ScoreHolder.Instance.equipTopHat == false)
+            {
+                topHatAmount.text = "Equip Me?";
+            }
+            else
+            {
+                topHatAmount.text = "Unequip Me?";
+            }
+        }
+    }
+
+    private void ToggleCapsule()
+    {
+        if (ScoreHolder.Instance.purchasedCapsule)
+        {
+            buyCapsuleButton.gameObject.SetActive(false);
+            equipCapsuleButton.gameObject.SetActive(true);
+            if (ScoreHolder.Instance.becomeCapsule == false)
+            {
+                capsuleAmount.text = "Equip Me?";
+            }
+            else
+            {
+                capsuleAmount.text = "Unequip Me?";
+            }
+        }
+    }
     private void PauseGame()
     {
         Time.timeScale = 0;
@@ -87,6 +190,12 @@ public class UIManager : MonoBehaviour
 
     private void ToMainMenu()
     {
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(0))
+        {
+            CloseShop();
+            return;
+        }
+
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu scene");
     }
@@ -98,7 +207,8 @@ public class UIManager : MonoBehaviour
 
     public void GameOver()
     {
-        FindObjectOfType<ScoreHolder>().SetScore();
+        ScoreHolder.Instance.SetScore();
+        ScoreHolder.Instance.SetCoins();
         SceneManager.LoadScene("GameOver scene");
     }
 

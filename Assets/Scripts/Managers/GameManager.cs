@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,7 +17,10 @@ public class GameManager : MonoBehaviour
     public GameObject laser2;
     public GameObject laser3;
 
-    [HideInInspector] public float score = 0f;
+    [HideInInspector]
+    public float score = 0f;
+    [HideInInspector]
+    public int coinsCollected;
 
     //Laser location
     private float randomLaserY;
@@ -70,6 +74,7 @@ public class GameManager : MonoBehaviour
         //Frostys index 
         if (randomIndex == 5)
         {
+            new Random.State();
             int areYouSure = Random.Range(0, 10);
             if(areYouSure != 7)
             {
@@ -93,6 +98,16 @@ public class GameManager : MonoBehaviour
     public void AddScore()
     {
         score = score + 5;
+
+        coinsCollected++;
+
+        // Load the existing player data
+        PlayerData playerData = LoadCoins();
+
+        // Update the player's data and save it instantly
+        playerData.coinCount++;
+
+        SaveCoins(playerData);
     }
 
     IEnumerator LaserSpawnTimer()
@@ -170,4 +185,29 @@ public class GameManager : MonoBehaviour
         ///FIX LATER IF PLAYER DIES TO STOP THE LOOP
         StartCoroutine(LaserIconSpawn());
     }
+
+    // Save the player's coin count using JSON serialization
+    public static void SaveCoins(PlayerData playerData)
+    {
+        string data = JsonUtility.ToJson(playerData);
+        File.WriteAllText(Application.persistentDataPath + "/playerData.json", data);
+    }
+
+    // Load the player's coin count using JSON deserialization
+    public static PlayerData LoadCoins()
+    {
+        string filePath = Application.persistentDataPath + "/playerData.json";
+
+        if (File.Exists(filePath))
+        {
+            string data = File.ReadAllText(filePath);
+            return JsonUtility.FromJson<PlayerData>(data);
+        }
+        else
+        {
+            // Return a new PlayerData instance if the file doesn't exist
+            return new PlayerData();
+        }
+    }
+
 }
