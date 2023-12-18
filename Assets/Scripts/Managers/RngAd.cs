@@ -12,7 +12,7 @@ public class RngAd : MonoBehaviour
     {
         if (AdTime)
             AdTime.onClick.AddListener(PlayAd);
-        if (Random.Range(0,10) == 7)
+        if (Random.Range(0,5) == 4)
         {
             AdTime.gameObject.SetActive(true);
         }
@@ -21,5 +21,6 @@ public class RngAd : MonoBehaviour
     private void PlayAd()
     {
         //Play ad and if ad completed double coins
+        
     }
 }

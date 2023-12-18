@@ -57,7 +57,7 @@ public class BannerAd : MonoBehaviour
 
     private void OnBannerClicked()
     {
-        // reward player when banner clicked or whaterver we want
+        FindFirstObjectByType<UIManager>().PauseGame();
     }
 
     private void OnBannerShown()

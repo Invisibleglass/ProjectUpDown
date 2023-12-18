@@ -25,9 +25,9 @@ public class ScoreHolder : MonoBehaviour
     [HideInInspector]
     public int coinsCollected = 0;
     [HideInInspector]
-    public int topHatAmount = 0;
+    public int topHatAmount = 100;
     [HideInInspector]
-    public int capsuleAmount = 0;
+    public int capsuleAmount = 1000;
 
     public static ScoreHolder Instance { get; private set; }
     private void Awake()

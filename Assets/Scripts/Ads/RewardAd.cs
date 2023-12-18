@@ -8,7 +8,6 @@ public class RewardAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListe
     string AndroidAdUnit = "Rewarded_Android";
     string iOSAdUnit = "Rewarded_iOS";
     string adUnitID;
-    [SerializeField] private UIManager uiManager;
 
     // Start is called before the first frame update
     private void Awake()
@@ -55,6 +54,6 @@ public class RewardAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListe
 
     public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
     {
-        //Us this to show what needs to be for completed ad
+        FindObjectOfType<UIManager>().RewardPlayer();
     }
 }

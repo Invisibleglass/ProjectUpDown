@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Advertisements;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [DefaultExecutionOrder(-2)]
 [RequireComponent(typeof(RewardAd), typeof(BannerAd), typeof(InterstitialAd))]
@@ -11,6 +13,8 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener
     public string AndroidGameID;
     public string iOSGameID;
     public bool testMode;
+
+    [SerializeField] private Button adButton;
 
     private InterstitialAd interstitialAd;
     public InterstitialAd InterstitialAd => interstitialAd;
@@ -37,6 +41,9 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener
         bannerAd = GetComponent<BannerAd>();
         rewardAd = GetComponent<RewardAd>();
 
+        if (adButton)
+            adButton.onClick.AddListener(PlayAd);
+
         string gameID = iOSGameID;
         if (Application.platform == RuntimePlatform.Android)
             gameID = AndroidGameID;
@@ -45,14 +52,20 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener
             throw new InvalidDataException("No Game ID set");
 
         Advertisement.Initialize(gameID, testMode, this);
-
     }
 
+    private void PlayAd()
+    {
+        //Play ad and if ad completed double coins
+        RewardAd.LoadAd();
+    }
 
     public void OnInitializationComplete()
     {
-        //RewardAd.LoadAd();
-        //BannerAd.LoadBanner();
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1))
+        {
+            BannerAd.LoadBanner();
+        }
     }
 
     public void OnInitializationFailed(UnityAdsInitializationError error, string message)
